@@ -1,7 +1,3 @@
-// backend/src/domain/movies/movie.remote.ts
-// Final diagnostic version: uses safeSelect + simple SELECT builder.
-// Clear errors when graph is missing/empty or query matches nothing.
-
 import { FUSEKI_GRAPH } from "../../infra/fuseki.config.ts";
 import { safeSelect } from "../../infra/fuseki.select.ts";
 import { selectMoviesBasic } from "./movie.queries.ts";
@@ -25,15 +21,9 @@ export type MovieDTO = {
 };
 
 /** Extract a compact id (works for Wikidata Q-IDs and generic IRIs) */
-const iriToId = (iri: string) => iri.split(/[\/#]/).filter(Boolean).pop() || iri;
+const iriToId = (iri: string) => 
+  iri.split(/[\/#]/).filter(Boolean).pop() || iri;
 
-/**
- * List movies directly from Fuseki (no in-memory step).
- * Adds strong diagnostics via `safeSelect`:
- * - Named graph missing/empty
- * - Graph has data but query matches 0 rows (predicate mismatch)
- * - Endpoint/config errors with hints
- */
 export async function listMoviesFromFuseki(
   limit: number = 25,
   offset: number = 0,
