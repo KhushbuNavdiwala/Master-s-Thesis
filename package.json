@@ -9,7 +9,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "description": "",
+    "description": "REST API prototype for Knowledge Graph access using ShEx and LDO",
     "dependencies": {
         "@ldo/ldo": "^1.0.0-alpha.31",
         "@rdfjs/data-model": "^2.1.1",
